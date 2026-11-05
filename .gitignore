@@ -1,0 +1,60 @@
+# Projet Python ; les dossiers historiques Godot restent inchangés.
+.venv/
+.venv-web/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+saves/
+
+# Préparation Web locale, sans données utilisateur.
+web_build/
+
+# Clés personnelles de reconnexion multijoueur.
+# Toute la configuration personnelle, notamment les clés de reconnexion.
+settings/
+
+# Caches, sorties et fichiers temporaires locaux.
+.mypy_cache/
+.coverage
+htmlcov/
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+/outputs/
+/work/
+/tests/arena-net-*/
+/Untitled-*.py
+
+# Données d'authentification et configuration locale : jamais de secrets dans Git.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+credentials.json
+secrets.json
+secrets.*
+.codex/
+.agents/
+
+# Anciens projets et archives conservés sur le PC, hors publication Python.
+/STAR_ARENA_GALACTIC_CONQUEST*/
+.godot/
+*.zip
+*.7z
+*.rar

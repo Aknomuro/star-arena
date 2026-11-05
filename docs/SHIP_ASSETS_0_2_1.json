@@ -1,0 +1,212 @@
+{
+  "scope": "Fichiers présents dans assets/ships et en-têtes seulement ; aucun décodage d'image",
+  "png_files_present": 9,
+  "files": [
+    {
+      "path": "alliance/corvette.png",
+      "bytes": 19961,
+      "dimensions": [
+        256,
+        256
+      ],
+      "header_valid": true,
+      "sha256": "4dd4918dd4bb0d70949d7b657ff68b4d45327a9002d62cb0ff593acf37a56f49",
+      "matches_imported_source": true,
+      "png_color_type": 6,
+      "alpha_channel_declared": true
+    },
+    {
+      "path": "alliance/cruiser.png",
+      "bytes": 17745,
+      "dimensions": [
+        256,
+        256
+      ],
+      "header_valid": true,
+      "sha256": "d869ed3497ec838bdfd656249714bc822161abd81422ea20095869816c32568a",
+      "matches_imported_source": true,
+      "png_color_type": 6,
+      "alpha_channel_declared": true
+    },
+    {
+      "path": "alliance/fighter.png",
+      "bytes": 25226,
+      "dimensions": [
+        256,
+        256
+      ],
+      "header_valid": true,
+      "sha256": "258a3dd16c52c3f4622a0b9d01d52041af81034d96abec1ea1220ebf6654a000",
+      "matches_imported_source": true,
+      "png_color_type": 6,
+      "alpha_channel_declared": true
+    },
+    {
+      "path": "empire/corvette.png",
+      "bytes": 15921,
+      "dimensions": [
+        256,
+        256
+      ],
+      "header_valid": true,
+      "sha256": "26ca6c9a43ad70cd9c0e36d0b4c3d5b2f25c1358f6fb4cba2850e5e986a95b08",
+      "matches_imported_source": true,
+      "png_color_type": 6,
+      "alpha_channel_declared": true
+    },
+    {
+      "path": "empire/cruiser.png",
+      "bytes": 21618,
+      "dimensions": [
+        256,
+        256
+      ],
+      "header_valid": true,
+      "sha256": "5f901e613b4f952c332835c710be53344f5fc896889d1c1a6ad88a2653a966ef",
+      "matches_imported_source": true,
+      "png_color_type": 6,
+      "alpha_channel_declared": true
+    },
+    {
+      "path": "empire/fighter.png",
+      "bytes": 21294,
+      "dimensions": [
+        256,
+        256
+      ],
+      "header_valid": true,
+      "sha256": "117d2f861b6d1686cb28604b56d4f5643e7aa2a8824cc5f427d290c22fcea1d9",
+      "matches_imported_source": true,
+      "png_color_type": 6,
+      "alpha_channel_declared": true
+    },
+    {
+      "path": "republic/corvette.png",
+      "bytes": 17412,
+      "dimensions": [
+        256,
+        256
+      ],
+      "header_valid": true,
+      "sha256": "8fb9073f0e296f91d5ba28daba8d88500dc768e2f0aa583a4b96531973eb4321",
+      "matches_imported_source": true,
+      "png_color_type": 6,
+      "alpha_channel_declared": true
+    },
+    {
+      "path": "republic/cruiser.png",
+      "bytes": 21964,
+      "dimensions": [
+        256,
+        256
+      ],
+      "header_valid": true,
+      "sha256": "b22e41eb01a89227309aed7f96c2dba38ec15e3dbe5f4ce28328ad0e56b7cd2f",
+      "matches_imported_source": true,
+      "png_color_type": 6,
+      "alpha_channel_declared": true
+    },
+    {
+      "path": "republic/fighter.png",
+      "bytes": 18023,
+      "dimensions": [
+        256,
+        256
+      ],
+      "header_valid": true,
+      "sha256": "d704b2fbf1e2b554bbb2948d376cecf8dc90eed89c37eb255610feaca441f266",
+      "matches_imported_source": true,
+      "png_color_type": 6,
+      "alpha_channel_declared": true
+    }
+  ],
+  "slots": [
+    {
+      "faction": "republic",
+      "class": "fighter",
+      "expected": "republic/fighter.png",
+      "available": "republic/fighter.png",
+      "dedicated": true,
+      "source_file": "chasseur.png",
+      "forward": "up"
+    },
+    {
+      "faction": "republic",
+      "class": "corvette",
+      "expected": "republic/corvette.png",
+      "available": "republic/corvette.png",
+      "dedicated": true,
+      "source_file": "corvette.png",
+      "forward": "up"
+    },
+    {
+      "faction": "republic",
+      "class": "cruiser",
+      "expected": "republic/cruiser.png",
+      "available": "republic/cruiser.png",
+      "dedicated": true,
+      "source_file": "croiseur_lourd.png",
+      "forward": "up"
+    },
+    {
+      "faction": "empire",
+      "class": "fighter",
+      "expected": "empire/fighter.png",
+      "available": "empire/fighter.png",
+      "dedicated": true,
+      "source_file": "tie_interceptor.png",
+      "forward": "up"
+    },
+    {
+      "faction": "empire",
+      "class": "corvette",
+      "expected": "empire/corvette.png",
+      "available": "empire/corvette.png",
+      "dedicated": true,
+      "source_file": "nebulon_b.png",
+      "forward": "up"
+    },
+    {
+      "faction": "empire",
+      "class": "cruiser",
+      "expected": "empire/cruiser.png",
+      "available": "empire/cruiser.png",
+      "dedicated": true,
+      "source_file": "imperial_star_destroyer.png",
+      "forward": "up"
+    },
+    {
+      "faction": "alliance",
+      "class": "fighter",
+      "expected": "alliance/fighter.png",
+      "available": "alliance/fighter.png",
+      "dedicated": true,
+      "source_file": "x_wing.png",
+      "forward": "up"
+    },
+    {
+      "faction": "alliance",
+      "class": "corvette",
+      "expected": "alliance/corvette.png",
+      "available": "alliance/corvette.png",
+      "dedicated": true,
+      "source_file": "tantive_iv.png",
+      "forward": "up"
+    },
+    {
+      "faction": "alliance",
+      "class": "cruiser",
+      "expected": "alliance/cruiser.png",
+      "available": "alliance/cruiser.png",
+      "dedicated": true,
+      "source_file": "mc80_liberty.png",
+      "forward": "up"
+    }
+  ],
+  "missing_slots": 0,
+  "dedicated_slots_available": 9,
+  "manifest_error": null,
+  "pygame_imported": false,
+  "graphics_executed": false,
+  "images_generated": false
+}

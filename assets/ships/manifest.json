@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "source_directory": "STAR_ARENA_V9_Tactical_Fleet/STAR_ARENA/assets/ships",
+  "assignment_note": "Affectation visuelle locale au jeu Python ; la V9 utilise deux equipes et ne definit pas ces trois factions.",
+  "entries": [
+    {
+      "faction": "republic",
+      "class": "fighter",
+      "file": "republic/fighter.png",
+      "source_file": "chasseur.png",
+      "source_class": "Chasseur",
+      "forward": "up",
+      "sha256": "d704b2fbf1e2b554bbb2948d376cecf8dc90eed89c37eb255610feaca441f266"
+    },
+    {
+      "faction": "republic",
+      "class": "corvette",
+      "file": "republic/corvette.png",
+      "source_file": "corvette.png",
+      "source_class": "Corvette",
+      "forward": "up",
+      "sha256": "8fb9073f0e296f91d5ba28daba8d88500dc768e2f0aa583a4b96531973eb4321"
+    },
+    {
+      "faction": "republic",
+      "class": "cruiser",
+      "file": "republic/cruiser.png",
+      "source_file": "croiseur_lourd.png",
+      "source_class": "Croiseur lourd",
+      "forward": "up",
+      "sha256": "b22e41eb01a89227309aed7f96c2dba38ec15e3dbe5f4ce28328ad0e56b7cd2f"
+    },
+    {
+      "faction": "empire",
+      "class": "fighter",
+      "file": "empire/fighter.png",
+      "source_file": "tie_interceptor.png",
+      "source_class": "TIE Interceptor",
+      "forward": "up",
+      "sha256": "117d2f861b6d1686cb28604b56d4f5643e7aa2a8824cc5f427d290c22fcea1d9"
+    },
+    {
+      "faction": "empire",
+      "class": "corvette",
+      "file": "empire/corvette.png",
+      "source_file": "nebulon_b.png",
+      "source_class": "Nebulon-B",
+      "forward": "up",
+      "sha256": "26ca6c9a43ad70cd9c0e36d0b4c3d5b2f25c1358f6fb4cba2850e5e986a95b08"
+    },
+    {
+      "faction": "empire",
+      "class": "cruiser",
+      "file": "empire/cruiser.png",
+      "source_file": "imperial_star_destroyer.png",
+      "source_class": "Imperial Star Destroyer",
+      "forward": "up",
+      "sha256": "5f901e613b4f952c332835c710be53344f5fc896889d1c1a6ad88a2653a966ef"
+    },
+    {
+      "faction": "alliance",
+      "class": "fighter",
+      "file": "alliance/fighter.png",
+      "source_file": "x_wing.png",
+      "source_class": "X-Wing",
+      "forward": "up",
+      "sha256": "258a3dd16c52c3f4622a0b9d01d52041af81034d96abec1ea1220ebf6654a000"
+    },
+    {
+      "faction": "alliance",
+      "class": "corvette",
+      "file": "alliance/corvette.png",
+      "source_file": "tantive_iv.png",
+      "source_class": "Tantive IV",
+      "forward": "up",
+      "sha256": "4dd4918dd4bb0d70949d7b657ff68b4d45327a9002d62cb0ff593acf37a56f49"
+    },
+    {
+      "faction": "alliance",
+      "class": "cruiser",
+      "file": "alliance/cruiser.png",
+      "source_file": "mc80_liberty.png",
+      "source_class": "MC80 Liberty",
+      "forward": "up",
+      "sha256": "d869ed3497ec838bdfd656249714bc822161abd81422ea20095869816c32568a"
+    }
+  ]
+}

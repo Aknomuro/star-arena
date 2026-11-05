@@ -1,0 +1,9 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.analysis.extraPaths": ["${workspaceFolder}/src"],
+  "python.analysis.include": ["src", "main.py"],
+  "python.analysis.exclude": ["work", "outputs", "STAR_ARENA_GALACTIC_CONQUEST", "STAR_ARENA_GALACTIC_CONQUEST_0.1", "STAR_ARENA_GALACTIC_CONQUEST_0.3.0"],
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.indexing": false,
+  "python.analysis.diagnosticMode": "openFilesOnly"
+}

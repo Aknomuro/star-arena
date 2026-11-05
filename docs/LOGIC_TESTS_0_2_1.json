@@ -1,0 +1,14 @@
+{
+  "timestamp_utc": "2026-11-04T19:47:16.465932+00:00",
+  "python": "3.12.14",
+  "tests_run": 64,
+  "project_version": "0.2.1",
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 0.2233,
+  "pygame_imported": false,
+  "graphics_executed": false,
+  "success": true,
+  "details": []
+}

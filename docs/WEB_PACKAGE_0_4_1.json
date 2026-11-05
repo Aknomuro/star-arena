@@ -1,0 +1,311 @@
+{
+  "files": [
+    {
+      "path": "main.py",
+      "bytes": 468,
+      "sha256": "c9028e4d9aedb4a267cbb429a5b5ac3f3163ff16995dca5e9491f4de861278dc"
+    },
+    {
+      "path": "src/star_arena/__init__.py",
+      "bytes": 76,
+      "sha256": "6725fa40eef705824c3fdce25852b9c46d656e84d186ff3edac83f62d70f36a3"
+    },
+    {
+      "path": "src/star_arena/__main__.py",
+      "bytes": 79,
+      "sha256": "a72b9285ed75e3b5b8655255a23dca3fb8c60c1ab6bb12b5d6972117ad11a475"
+    },
+    {
+      "path": "src/star_arena/app.py",
+      "bytes": 46799,
+      "sha256": "89e8978becddcc3c08194bba8f02ec5a757fa3ad723cabff17224297f0fd65f9"
+    },
+    {
+      "path": "src/star_arena/config.py",
+      "bytes": 1142,
+      "sha256": "80b78a85c2a1bab971f3e961a5d41444ff86dc546ad19ecd4ab4b8addd13e1b1"
+    },
+    {
+      "path": "src/star_arena/domain/__init__.py",
+      "bytes": 48,
+      "sha256": "61dfac6a63c37968aea59e326be90cddc858f18833620cd65302f2c33bd68c66"
+    },
+    {
+      "path": "src/star_arena/domain/galaxy.py",
+      "bytes": 3057,
+      "sha256": "1ff7ef6a14413c815ca95fad38f7b6d12a0e761bbf4905740fadfee35109c132"
+    },
+    {
+      "path": "src/star_arena/domain/galaxy_layout.py",
+      "bytes": 1968,
+      "sha256": "68dfcd4cda09814b45d89bf8501ef3d1b4926bfaa7e79d07260e4eb0573b6527"
+    },
+    {
+      "path": "src/star_arena/domain/models.py",
+      "bytes": 5813,
+      "sha256": "813d852aa34f8ae77d3657db341995c03c03a9f694b90fbc52b47054838239bc"
+    },
+    {
+      "path": "src/star_arena/domain/planet_generation.py",
+      "bytes": 892,
+      "sha256": "6bb882f67cd1b7c20d3f2ad8b79fb4b5ba5dfc1faf031b4d31db4b03ce5bb243"
+    },
+    {
+      "path": "src/star_arena/domain/planet_stats.py",
+      "bytes": 1773,
+      "sha256": "b1230e79f8ebe9a827fc8d653f60e7626a9ac30ef63689a49462fac89e90cade"
+    },
+    {
+      "path": "src/star_arena/domain/ship_stats.py",
+      "bytes": 1471,
+      "sha256": "1d69da2062f1e655986d1f590511259c29c043dadd68c6c2ae46fadca6676d25"
+    },
+    {
+      "path": "src/star_arena/network/__init__.py",
+      "bytes": 68,
+      "sha256": "6f6a150d0be364f60c53de3062618041561e47e765f53426a5f5ce176ff04aed"
+    },
+    {
+      "path": "src/star_arena/network/replica.py",
+      "bytes": 708,
+      "sha256": "8aec5b2d305b91a99353eb191cc55d0c65cc03f54f69576b8ff59250951f7b8e"
+    },
+    {
+      "path": "src/star_arena/persistence.py",
+      "bytes": 28701,
+      "sha256": "78f4a0d23ef1d1dce1fdb8207c97373335ee27573d0d117e82c5c54fe0a43b2a"
+    },
+    {
+      "path": "src/star_arena/presentation/__init__.py",
+      "bytes": 68,
+      "sha256": "70f4a6128d657bfd8c27451e1b041b25e219bc0404c61f9c06c972f8bdc9988c"
+    },
+    {
+      "path": "src/star_arena/presentation/art.py",
+      "bytes": 3492,
+      "sha256": "d953c62d46796765dfdccf0a13af32a6088f3558d0b48b1218e36c734733b5c1"
+    },
+    {
+      "path": "src/star_arena/presentation/audio.py",
+      "bytes": 4843,
+      "sha256": "ceb986ac70d786fb3cc00652a5537e8da90d59e6b4b473eda6b62f0e1cce35ed"
+    },
+    {
+      "path": "src/star_arena/presentation/audio_settings.py",
+      "bytes": 2488,
+      "sha256": "52b211aa707418809f2f84a1a47b13fba187222b5312ad94dd56a322269c4974"
+    },
+    {
+      "path": "src/star_arena/presentation/battle_input.py",
+      "bytes": 7026,
+      "sha256": "43e5af9dd1b873542a441c74e55ff78afcac05f302d612928b589eda3eb20e8f"
+    },
+    {
+      "path": "src/star_arena/presentation/battle_renderer.py",
+      "bytes": 8940,
+      "sha256": "90eb03a1cb7ed7538c45f682c09ebbb5c6daed5262dbac8607892302a07563bb"
+    },
+    {
+      "path": "src/star_arena/presentation/camera.py",
+      "bytes": 2136,
+      "sha256": "cf0c63f2fc0052e457835961dc908e34d6472335b5b105b9087670d2f6be56f8"
+    },
+    {
+      "path": "src/star_arena/presentation/fleet_assets.py",
+      "bytes": 5153,
+      "sha256": "d37c0e4d03ed20348ce0863b301089a87bd2405f2ca9ab2e7c190fe1b78d12d8"
+    },
+    {
+      "path": "src/star_arena/presentation/multiplayer_view.py",
+      "bytes": 4562,
+      "sha256": "640593099c467103796ebc34a0b5d413b50b9af7e0ba43628c881fda418437a1"
+    },
+    {
+      "path": "src/star_arena/presentation/music.py",
+      "bytes": 5390,
+      "sha256": "ac689c8e4faf2c46f91b85e988f414eec29332c9d03464e60cf53bb4dcf7cab2"
+    },
+    {
+      "path": "src/star_arena/presentation/quality.py",
+      "bytes": 430,
+      "sha256": "31f49b853e1878e49576a75f4892c14e0f881e0e5e3daddddfbe26a64650bd8f"
+    },
+    {
+      "path": "src/star_arena/presentation/renderer.py",
+      "bytes": 30577,
+      "sha256": "ff9f141d36f629074c2feaf5368fa3db2537720d4f9eb7a7b12f917b07c724c5"
+    },
+    {
+      "path": "src/star_arena/presentation/ship_sprites.py",
+      "bytes": 4512,
+      "sha256": "5156a3d4db337e00eca7e64a3ccbd222db03f845cb0540b651bd69b2114b65be"
+    },
+    {
+      "path": "src/star_arena/presentation/system_view.py",
+      "bytes": 7920,
+      "sha256": "4eda819a6bd6ce990a7fd9cb0ef84fd3133f10d39a9d5672b696747c1629494a"
+    },
+    {
+      "path": "src/star_arena/systems/__init__.py",
+      "bytes": 52,
+      "sha256": "28b63c498476c6d5721265e13b3ce4961445510e2246720d2228c2abe8ede73a"
+    },
+    {
+      "path": "src/star_arena/systems/admin.py",
+      "bytes": 2314,
+      "sha256": "cf104ba02326fa8097f9b17c1a6ae27b8d66c0e295bcc54b84dd3c0573105801"
+    },
+    {
+      "path": "src/star_arena/systems/battlefield.py",
+      "bytes": 2096,
+      "sha256": "0465c848b168f3a32897e5417db7a1054cbe85ed0b889e019c3678f7c4e73316"
+    },
+    {
+      "path": "src/star_arena/systems/combat.py",
+      "bytes": 8571,
+      "sha256": "7239513dc52026c47fe7d4231b2a82897ec83be87138ece4dc8709445922a74b"
+    },
+    {
+      "path": "src/star_arena/systems/economy.py",
+      "bytes": 7063,
+      "sha256": "7e284d67fe733d8c1cc9cb124b677852b88f84d13bf95279b8a14cbdde6af9a4"
+    },
+    {
+      "path": "src/star_arena/systems/formations.py",
+      "bytes": 903,
+      "sha256": "00b05074a9135284a04cc9b5b67e6fa9f901ad92451eedaf354e1807ba4a19c8"
+    },
+    {
+      "path": "src/star_arena/systems/navigation.py",
+      "bytes": 4697,
+      "sha256": "011cd46eca774093d44fa30b59dc77d522ddb65290cd66cfcde799f79b38802b"
+    },
+    {
+      "path": "src/star_arena/systems/planets.py",
+      "bytes": 10802,
+      "sha256": "48e19ad500c6102b5bf25f04f7c8c51d166453f02a545f7ee929e3ac69ffaa10"
+    },
+    {
+      "path": "src/star_arena/systems/simulation.py",
+      "bytes": 9675,
+      "sha256": "27d45df58871bad705cc24e72db4e5f054326017921517aa272d4ca56d646dc3"
+    },
+    {
+      "path": "src/star_arena/systems/spatial.py",
+      "bytes": 1028,
+      "sha256": "2ffff5927aeb45a781aadfdd995eab39e05d711fcb61dd03a4fb31250b935016"
+    },
+    {
+      "path": "src/star_arena/systems/tactical.py",
+      "bytes": 18868,
+      "sha256": "c70526fc1f72da865a8f778541e70eda85c763e56a92d1276848f5fd87660dda"
+    },
+    {
+      "path": "src/star_arena/web.py",
+      "bytes": 4864,
+      "sha256": "13609b41169c9b5bba39d9dd349dab1c2f60d00e2fde8e54a31a0fee5bde6ebc"
+    },
+    {
+      "path": "web/browser.js",
+      "bytes": 6559,
+      "sha256": "251a19673bfe986328c72702cc9f653696278580ac5d0d9c201541509f436fac"
+    },
+    {
+      "path": "assets/ships/alliance/corvette.png",
+      "bytes": 19961,
+      "sha256": "4dd4918dd4bb0d70949d7b657ff68b4d45327a9002d62cb0ff593acf37a56f49"
+    },
+    {
+      "path": "assets/ships/alliance/cruiser.png",
+      "bytes": 17745,
+      "sha256": "d869ed3497ec838bdfd656249714bc822161abd81422ea20095869816c32568a"
+    },
+    {
+      "path": "assets/ships/alliance/fighter.png",
+      "bytes": 25226,
+      "sha256": "258a3dd16c52c3f4622a0b9d01d52041af81034d96abec1ea1220ebf6654a000"
+    },
+    {
+      "path": "assets/ships/empire/corvette.png",
+      "bytes": 15921,
+      "sha256": "26ca6c9a43ad70cd9c0e36d0b4c3d5b2f25c1358f6fb4cba2850e5e986a95b08"
+    },
+    {
+      "path": "assets/ships/empire/cruiser.png",
+      "bytes": 21618,
+      "sha256": "5f901e613b4f952c332835c710be53344f5fc896889d1c1a6ad88a2653a966ef"
+    },
+    {
+      "path": "assets/ships/empire/fighter.png",
+      "bytes": 21294,
+      "sha256": "117d2f861b6d1686cb28604b56d4f5643e7aa2a8824cc5f427d290c22fcea1d9"
+    },
+    {
+      "path": "assets/ships/republic/corvette.png",
+      "bytes": 17412,
+      "sha256": "8fb9073f0e296f91d5ba28daba8d88500dc768e2f0aa583a4b96531973eb4321"
+    },
+    {
+      "path": "assets/ships/republic/cruiser.png",
+      "bytes": 21964,
+      "sha256": "b22e41eb01a89227309aed7f96c2dba38ec15e3dbe5f4ce28328ad0e56b7cd2f"
+    },
+    {
+      "path": "assets/ships/republic/fighter.png",
+      "bytes": 18023,
+      "sha256": "d704b2fbf1e2b554bbb2948d376cecf8dc90eed89c37eb255610feaca441f266"
+    },
+    {
+      "path": "assets/ships/manifest.json",
+      "bytes": 1947,
+      "sha256": "20ecf30a9d15263a0abe64bcc169b013459a11ef0dd3aaf6460e08c9d8acd8ae"
+    },
+    {
+      "path": "assets/audio/music/battle.wav",
+      "bytes": 176444,
+      "sha256": "706453f29402f77a05dcb1877f7cd87156cee84e379129e099753dddd98a13ed"
+    },
+    {
+      "path": "assets/audio/music/defeat.wav",
+      "bytes": 70604,
+      "sha256": "566e705960e1be1650cd1b41616c73db531fda20fa04681665df82c84316c7fa"
+    },
+    {
+      "path": "assets/audio/music/galaxy.wav",
+      "bytes": 176444,
+      "sha256": "4ec62afea188fe2fd1462932a46b6dc703ee265c07d16bfb240ecf9e5d98b5bc"
+    },
+    {
+      "path": "assets/audio/music/main_menu.wav",
+      "bytes": 176444,
+      "sha256": "3be06fce060de24fc910eb0932a6095bc66e0aa07e797742c581776f6591a7ab"
+    },
+    {
+      "path": "assets/audio/music/planetary.wav",
+      "bytes": 176444,
+      "sha256": "f694c5bae3f5a8fac7c252640d5ce9acf18ddbbe3e7cd0ad3aa5abc8c34728b3"
+    },
+    {
+      "path": "assets/audio/music/victory.wav",
+      "bytes": 70604,
+      "sha256": "b46d7db290a7354b49033a008d49360444245d5396277093d432699d67a45760"
+    }
+  ],
+  "count": 58,
+  "bytes": 1286187,
+  "sprites": 9,
+  "music_tracks": 6,
+  "effects": "7 effets synthétisés par presentation/audio.py",
+  "browser_tested": false,
+  "export_executed": false,
+  "excluded": [
+    ".venv",
+    "Godot et archives",
+    "saves",
+    "settings",
+    "tests",
+    "__pycache__",
+    "serveur et client LAN"
+  ],
+  "staged_files": 58
+}

@@ -1,0 +1,45 @@
+{
+  "version": "0.3.1",
+  "scope": "Fichiers présents et en-têtes OggS seulement ; aucun décodage ni lecture audio",
+  "tracks": {
+    "menu": {
+      "file": "main_menu.ogg",
+      "present": false,
+      "bytes": 0,
+      "ogg_header": false
+    },
+    "galaxy": {
+      "file": "galaxy.ogg",
+      "present": false,
+      "bytes": 0,
+      "ogg_header": false
+    },
+    "system": {
+      "file": "planetary.ogg",
+      "present": false,
+      "bytes": 0,
+      "ogg_header": false
+    },
+    "battle": {
+      "file": "battle.ogg",
+      "present": false,
+      "bytes": 0,
+      "ogg_header": false
+    },
+    "victory": {
+      "file": "victory.ogg",
+      "present": false,
+      "bytes": 0,
+      "ogg_header": false
+    },
+    "defeat": {
+      "file": "defeat.ogg",
+      "present": false,
+      "bytes": 0,
+      "ogg_header": false
+    }
+  },
+  "pygame_imported": false,
+  "audio_played": false,
+  "fallback": "silence"
+}

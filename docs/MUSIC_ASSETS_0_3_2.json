@@ -1,0 +1,86 @@
+{
+  "version": "0.3.2",
+  "tracks": {
+    "menu": {
+      "file": "main_menu.wav",
+      "present": true,
+      "bytes": 176444,
+      "ogg_header": false,
+      "wav_header": true,
+      "valid_header": true,
+      "duration": 8.0,
+      "channels": 1,
+      "rate": 11025,
+      "sample_width": 2,
+      "sha256": "3be06fce060de24fc910eb0932a6095bc66e0aa07e797742c581776f6591a7ab"
+    },
+    "galaxy": {
+      "file": "galaxy.wav",
+      "present": true,
+      "bytes": 176444,
+      "ogg_header": false,
+      "wav_header": true,
+      "valid_header": true,
+      "duration": 8.0,
+      "channels": 1,
+      "rate": 11025,
+      "sample_width": 2,
+      "sha256": "4ec62afea188fe2fd1462932a46b6dc703ee265c07d16bfb240ecf9e5d98b5bc"
+    },
+    "system": {
+      "file": "planetary.wav",
+      "present": true,
+      "bytes": 176444,
+      "ogg_header": false,
+      "wav_header": true,
+      "valid_header": true,
+      "duration": 8.0,
+      "channels": 1,
+      "rate": 11025,
+      "sample_width": 2,
+      "sha256": "f694c5bae3f5a8fac7c252640d5ce9acf18ddbbe3e7cd0ad3aa5abc8c34728b3"
+    },
+    "battle": {
+      "file": "battle.wav",
+      "present": true,
+      "bytes": 176444,
+      "ogg_header": false,
+      "wav_header": true,
+      "valid_header": true,
+      "duration": 8.0,
+      "channels": 1,
+      "rate": 11025,
+      "sample_width": 2,
+      "sha256": "706453f29402f77a05dcb1877f7cd87156cee84e379129e099753dddd98a13ed"
+    },
+    "victory": {
+      "file": "victory.wav",
+      "present": true,
+      "bytes": 70604,
+      "ogg_header": false,
+      "wav_header": true,
+      "valid_header": true,
+      "duration": 3.2,
+      "channels": 1,
+      "rate": 11025,
+      "sample_width": 2,
+      "sha256": "b46d7db290a7354b49033a008d49360444245d5396277093d432699d67a45760"
+    },
+    "defeat": {
+      "file": "defeat.wav",
+      "present": true,
+      "bytes": 70604,
+      "ogg_header": false,
+      "wav_header": true,
+      "valid_header": true,
+      "duration": 3.2,
+      "channels": 1,
+      "rate": 11025,
+      "sample_width": 2,
+      "sha256": "566e705960e1be1650cd1b41616c73db531fda20fa04681665df82c84316c7fa"
+    }
+  },
+  "audio_played": false,
+  "pygame_imported": false,
+  "source": "Six compositions synthétiques originales générées hors ligne avec tools/generate_music.py"
+}

@@ -1,0 +1,47 @@
+name: STAR ARENA Web Edition
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: star-arena-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/configure-pages@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Vérifications statiques et paquet isolé
+        run: |
+          python -B tools/check_static.py
+          python -B tools/prepare_web.py --stage web_build/arena --report
+      - name: Installer le packager uniquement dans le runner CI
+        run: python -m pip install -r requirements-web.txt
+      - name: Build Pygbag sans serveur ni navigateur
+        run: python -m pygbag --build --no_opt --PYBUILD 3.12 --width 1280 --height 800 --ume_block 1 --can_close 1 --package star.arena.web --title "STAR ARENA" web_build/arena
+      - name: Vérifier les fichiers générés
+        run: python -B tools/check_web_build.py web_build/arena/build/web
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: web_build/arena/build/web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
