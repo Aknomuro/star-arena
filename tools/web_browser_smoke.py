@@ -42,10 +42,10 @@ def main():
                     if state and state['state'] in ('ready','error'):
                         result['boot']=state
                         break
-                    page.locator('canvas').first.click(position={'x':640,'y':400},timeout=1000,force=True) if page.locator('canvas').count() else None
+                    page.locator('#canvas').click(position={'x':640,'y':400},timeout=1000,force=True) if page.locator('#canvas').count() else None
                     page.wait_for_timeout(2000)
                 result['boot']=page.evaluate('window.starArenaBoot ? {state:starArenaBoot.state,phase:starArenaBoot.phase,message:starArenaBoot.message,history:starArenaBoot.history} : null')
-                result['canvas']=page.locator('canvas').evaluate('(c)=>({width:c.width,height:c.height,visible:c.getBoundingClientRect().width>0})')
+                result['canvas']=page.locator('#canvas').evaluate('(c)=>({width:c.width,height:c.height,visible:c.getBoundingClientRect().width>0})')
                 result['menu_visible']=bool(result['boot'] and result['boot']['state']=='ready' and result['canvas']['visible'])
                 page.screenshot(path=str(output/'menu.png'))
             except Exception as error:

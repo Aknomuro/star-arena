@@ -52,10 +52,10 @@
     bar.append(picker, status);
     document.body.prepend(bar);
     const style = document.createElement('style');
-    style.textContent = 'html,body{margin:0;background:#090f1a}canvas.emscripten,canvas{position:relative!important;inset:auto!important;border:0!important;padding:0!important;max-width:100%;object-fit:contain;touch-action:none;display:block;margin:auto!important}';
+    style.textContent = 'html,body{margin:0;background:#090f1a}canvas#canvas{position:relative!important;inset:auto!important;border:0!important;padding:0!important;max-width:100%;object-fit:contain;touch-action:none;display:block;margin:auto!important}';
     document.head.append(style);
     function fit() {
-        const canvas = document.querySelector('canvas');
+        const canvas = document.getElementById('canvas');
         if (!canvas) return;
         const height = Math.max(120, window.innerHeight - bar.offsetHeight - 8);
         const width = Math.min(window.innerWidth, height * 1.6);

@@ -21,6 +21,27 @@ def load_tool(name):
 
 
 class WebStartupTests(unittest.TestCase):
+    def test_music_imports_and_validates_real_assets_without_wave(self):
+        import builtins
+        original=builtins.__import__
+        def without_wave(name,*args,**kwargs):
+            if name=='wave': raise ModuleNotFoundError('wave absent comme sur WASM')
+            return original(name,*args,**kwargs)
+        path=ROOT/'src/star_arena/presentation/music.py'
+        spec=importlib.util.spec_from_file_location('music_without_wave',path)
+        module=importlib.util.module_from_spec(spec)
+        with patch('builtins.__import__',side_effect=without_wave):
+            spec.loader.exec_module(module)
+            rows=module.inventory(ROOT/'assets/audio/music')
+        self.assertEqual(sum(row['valid_header'] for row in rows.values()),6)
+
+    def test_truncated_wav_is_rejected_without_decoding_audio(self):
+        from star_arena.presentation.music import valid_pcm_wav
+        with temporary_directory() as folder:
+            path=Path(folder)/'truncated.wav'
+            path.write_bytes((ROOT/'assets/audio/music/main_menu.wav').read_bytes()[:45])
+            self.assertFalse(valid_pcm_wav(path))
+
     def test_flat_package_visible_before_entry_runs(self):
         tool=load_tool('prepare_web')
         with temporary_directory() as folder:

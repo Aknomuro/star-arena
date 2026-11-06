@@ -1,12 +1,43 @@
 """Musique en streaming via mixer.music ; fondus non bloquants et absence silencieuse."""
 from math import isfinite
 from pathlib import Path
-import wave
+import struct
 from star_arena.config import project_root
 
 TRACKS={'menu':'main_menu.ogg','galaxy':'galaxy.ogg','system':'planetary.ogg',
         'battle':'battle.ogg','victory':'victory.ogg','defeat':'defeat.ogg'}
 FADE_SECONDS=.75
+
+
+def valid_pcm_wav(path: Path) -> bool:
+    """Inspecter le conteneur PCM 16 bits sans wave (absent du runtime WASM)."""
+    size=path.stat().st_size
+    with path.open('rb') as stream:
+        header=stream.read(12)
+        if len(header)!=12 or header[:4]!=b'RIFF' or header[8:]!=b'WAVE':
+            return False
+        end=struct.unpack('<I',header[4:8])[0]+8
+        if end>size or end<36:
+            return False
+        alignment=None; data_size=0
+        for _ in range(128):
+            if stream.tell()+8>end:
+                break
+            chunk=stream.read(8)
+            kind,length=chunk[:4],struct.unpack('<I',chunk[4:])[0]
+            start=stream.tell()
+            if start+length>end:
+                return False
+            if kind==b'fmt ':
+                if length<16: return False
+                encoding,channels,rate,byte_rate,block,bits=struct.unpack('<HHIIHH',stream.read(16))
+                if encoding!=1 or channels not in (1,2) or rate<=0 or bits!=16 or block!=channels*2 or byte_rate!=rate*block:
+                    return False
+                alignment=block
+            elif kind==b'data':
+                data_size=length
+            stream.seek(start+length+(length%2))
+        return alignment is not None and data_size>0 and data_size%alignment==0
 
 
 def inventory(root: Path) -> dict[str,dict]:
@@ -22,15 +53,12 @@ def inventory(root: Path) -> dict[str,dict]:
                     if path.suffix=='.ogg':
                         with path.open('rb') as stream: ogg=stream.read(4)==b'OggS'
                     else:
-                        with wave.open(str(path),'rb') as stream:
-                            wav=(stream.getnchannels() in (1,2) and stream.getsampwidth()==2
-                                 and stream.getframerate()>0 and stream.getnframes()>0
-                                 and size>=44+stream.getnframes()*stream.getnchannels()*2)
+                        wav=valid_pcm_wav(path)
                 candidate={'file':path.name,'present':exists,'bytes':size,'ogg_header':ogg,'wav_header':wav,'valid_header':ogg or wav}
                 if exists and not row['present']: row=candidate
                 if ogg or wav:
                     row=candidate; break
-            except (OSError,wave.Error,EOFError):
+            except (OSError,ValueError,struct.error,EOFError):
                 continue
         result[category]=row
     return result
