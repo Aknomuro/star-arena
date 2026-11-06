@@ -11,6 +11,11 @@ diagnostics avant Python/WASM et première image du menu forcée. Le workflow co
 le menu avec Chromium sur le runner GitHub, puis conserve sa console et une capture dans
 `web-startup-diagnostics`. Aucun navigateur n'est lancé sur le PC par ces outils.
 [Rapport du correctif écran noir](docs/WEB_STARTUP_FIX_0_4_1.md).
+
+Le [menu Web](https://aknomuro.github.io/star-arena/) est maintenant vérifié dans Chromium
+sur GitHub Actions : affichage et réponse du bouton Qualité, capture inspectée, déploiement réussi.
+Après mise à jour du site, utiliser Ctrl+F5 si une ancienne version reste en cache.
+Les parties complètes dans Chrome/Edge sur le PC restent à tester manuellement.
 60 systèmes, économie, chantiers navals, gestion planétaire et défense orbitale.
 Python 3.11+ et Pygame CE. Les batailles RTS et les neuf vrais PNG de la V0.2.1 sont conservés.
 
@@ -35,6 +40,8 @@ py -3 -m venv .venv
 ```
 
 ## V0.4.1 : préparation de la Web Edition
+
+**Historique de la préparation initiale, avant le correctif du 6 novembre 2026 ci-dessus.**
 
 Le solo utilise le même moteur sur PC et dans l'adaptation Pygbag : boucle coopérative,
 stockage navigateur, import/export JSON, activation audio après interaction et barre de commandes

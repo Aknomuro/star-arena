@@ -12,6 +12,14 @@ Le paquet dans `src/` n'était pas directement importable pendant cette étape, 
 `main.py` contenait déjà `from star_arena.app import run_game`. C'est une fragilité démontrée
 de l'empaquetage ; son rôle exact dans l'écran noir doit être confronté au test navigateur.
 
+**Erreur effectivement reproduite dans Chromium/WASM** :
+`ModuleNotFoundError: No module named 'wave'`, lors de l'import de
+`star_arena.presentation.music` depuis `star_arena.app`. Le runtime Python 3.12.2 de Pygbag
+ne fournit pas `wave`, bien qu'il soit présent dans le Python desktop. Le
+[run de diagnostic](https://github.com/Aknomuro/star-arena/actions/runs/42276911723)
+a capturé cette exception avant toute création du menu. Le contrôle WAV utilise désormais
+une lecture RIFF/PCM bornée avec `struct`, sans modifier les fichiers audio ou leur lecture SDL.
+
 Un préchargement HTML optionnel vers `pythonrc.py` renvoie 404 sur le CDN ; le véritable
 chargeur est `cpythonrc.py`, accessible. Cette URL de préchargement ne doit pas être confondue
 avec une preuve que tout le runtime est absent.
@@ -26,6 +34,8 @@ avec une preuve que tout le runtime est absent.
 - Les étapes Python, imports, Pygame, display et premier menu sont journalisées. Un premier
   dessin du menu est effectué avant de traiter la perte éventuelle de focus.
 - Le Web utilise explicitement la police Pygame par défaut, sans recherche des polices système Windows.
+- L'import et l'inventaire des six WAV fonctionnent sans `wave`. Un test bloque volontairement
+  cet import comme sur WASM ; les fichiers tronqués sont refusés.
 - `web/boot.js` est inséré avant le runtime dans le HTML généré, indépendamment de `web/browser.js`.
   Il affiche chargement, attente et erreurs JS/Python/WASM sans masquer durablement le canvas.
   L'overlay disparaît seulement au signal envoyé après le premier dessin du menu.
@@ -36,11 +46,15 @@ Le workflow manuel construit puis teste le démarrage sous `/star-arena/` dans C
 sur le runner GitHub. Il bloque le déploiement si le menu n'est pas confirmé et conserve
 `console.json`, `result.json` et `menu.png` dans l'artefact `web-startup-diagnostics`.
 Le script de ce test refuse de fonctionner hors d'un runner marqué `GITHUB_ACTIONS=true`.
+Le job utilise Ubuntu 24.04 explicitement : le premier essai a montré que Playwright 1.58
+ne prenait pas en charge Ubuntu 26.04, désormais choisi par `ubuntu-latest`.
+Le canvas de jeu est ciblé par `#canvas` ; le canvas auxiliaire `canvas3d` du runtime n'est
+plus affecté par le CSS du jeu et ne rend plus les sélections de test ambiguës.
 Aucun Pygbag, navigateur ou logiciel n'est installé/lancé automatiquement sur le PC.
 
 ## Vérifications locales
 
-234 tests légers réussis dans un seul processus, aucun import Pygame et aucune fenêtre.
+237 tests légers réussis dans un seul processus, aucun import Pygame et aucune fenêtre.
 Les tests supplémentaires couvrent paquet plat, racines d'assets PC/Web, bootstrap simulé,
 exception d'import visible, ordre des diagnostics et interdiction du test graphique hors CI.
 Contrôle statique : 68 fichiers Python sans erreur. Syntaxe des deux scripts JS vérifiée par Node.
@@ -51,8 +65,26 @@ règles de sauvegarde ni accès aux sauvegardes utilisateur. Le rapport final ne
 
 ## Test navigateur distant et limites
 
-État au moment de la préparation de ce commit : test CI à exécuter. Un build réussi ne sera pas
-présenté comme une validation du navigateur. Les résultats effectifs seront précisés après le run.
+Le [run 42277921663](https://github.com/Aknomuro/star-arena/actions/runs/42277921663) a réussi :
+build, vérification de l'archive, véritable démarrage dans Chromium puis déploiement Pages.
+Son artefact confirme Python WASM 3.12.2, Pygame CE 2.5.0.dev1, affichage 1280×800 et phase
+`menu` atteinte. La capture du runner a été inspectée : le menu STAR ARENA et les trois factions
+sont visibles, avec Nouvelle campagne, Charger, Paramètres audio et le bouton multijoueur Web indisponible.
+
+Le contrôle graphique a lieu sur le runner, pas sur le PC. La capture a ensuite révélé des accents
+mal transportés dans les boutons DOM. Le pont transmet désormais le script via une expression
+ASCII/JSON Unicode, et le HTML déclare UTF-8 dans ses 1024 premiers octets. Le préchargement
+`pythonrc.py` est corrigé en `cpythonrc.py`, éliminant la requête 404 non bloquante observée.
+Le test distant comprend aussi un clic sur Qualité et attend la réponse du moteur dans la barre Web.
+
+**Vérification finale réussie :** [run 42278466365](https://github.com/Aknomuro/star-arena/actions/runs/42278466365),
+commit applicatif `f2bb332`. Le build, l'archive, Chromium et le déploiement ont réussi.
+`menu_visible=true`, `menu_responds_to_quality=true`, réponse « Qualité desktop rétablie. ».
+La capture finale montre le menu complet et les accents corrects dans la barre Web.
+Aucune erreur HTTP ni JavaScript n'a été relevée dans ce test. Le site public répond HTTP 200
+et sert le script de diagnostic ainsi que la déclaration UTF-8 précoce.
+Résultat structuré : `docs/WEB_STARTUP_CI_0_4_1.json`.
+
 Même un premier menu vérifié dans Chromium ne valide pas l'ensemble du gameplay, des codecs audio,
 du stockage et des interactions, ni une session complète dans Chrome ou Edge sur votre PC.
 

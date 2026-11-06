@@ -1,5 +1,9 @@
 # STAR ARENA — V0.4.1 : Web Edition & GitHub Pages
 
+Rapport initial de préparation conservé. Depuis le correctif du 6 novembre 2026, le build,
+le menu et une interaction ont été vérifiés dans Chromium distant et déployés sur Pages.
+Voir [WEB_STARTUP_FIX_0_4_1.md](WEB_STARTUP_FIX_0_4_1.md) pour l'état actuel et les preuves.
+
 ## État de livraison
 
 L'adaptation solo Web est implémentée dans le moteur existant. Le paquet source/assets est

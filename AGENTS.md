@@ -1,7 +1,9 @@
 # STAR ARENA — version Python
 
 Le projet actif est maintenant le paquet Python `src/star_arena`, lancé par `main.py`.
-État courant : V0.4.1, adaptation Web non validée dans un navigateur,
+État courant : V0.4.1, premier menu Web validé dans Chromium sur runner GitHub,
+parties complètes et essais locaux Chrome/Edge encore manuels ; correctif dans
+`docs/WEB_STARTUP_FIX_0_4_1.md`,
 documentée dans `docs/WEB_EDITION_0_4_1.md` ; PC/LAN dans `docs/MULTIPLAYER_0_4_0.md`.
 Le socle planétaire est décrit dans `docs/ETAT_PROJET_PYTHON_0_3_DEFENSES.md`.
 Ne pas utiliser Godot ni un serveur MCP pour son développement. Préserver les anciens

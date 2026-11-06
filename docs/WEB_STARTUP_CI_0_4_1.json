@@ -1,0 +1,50 @@
+{
+  "menu_visible": true,
+  "browser": "Chromium headless GitHub Actions",
+  "boot": {
+    "state": "ready",
+    "phase": "menu",
+    "message": "Menu principal STAR ARENA affiché",
+    "history": [
+      {
+        "phase": "python",
+        "message": "Python 3.12.2 : main.py exécuté"
+      },
+      {
+        "phase": "imports",
+        "message": "Import du moteur STAR ARENA"
+      },
+      {
+        "phase": "pygame",
+        "message": "Pygame 2.5.0.dev1 / emscripten"
+      },
+      {
+        "phase": "display",
+        "message": "Affichage 1280×800 créé ; initialisation de l’interface"
+      },
+      {
+        "phase": "menu",
+        "message": "Menu principal STAR ARENA affiché"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1280,
+    "height": 800,
+    "visible": true
+  },
+  "menu_responds_to_quality": true,
+  "ui_message": "Qualité desktop rétablie.",
+  "workflow_run": "https://github.com/Aknomuro/star-arena/actions/runs/42278466365",
+  "tested_commit": "f2bb332d9c8b08a9d172b5aee568b3c5715ae829",
+  "scope": "Premier menu et bouton Qualite dans Chromium sur runner GitHub, sous /star-arena/",
+  "deployment_url": "https://aknomuro.github.io/star-arena/",
+  "deployment_success": true,
+  "public_http_status": 200,
+  "http_errors": [],
+  "javascript_errors": [],
+  "screenshot_visually_reviewed": true,
+  "local_browser_launched": false,
+  "complete_gameplay_tested": false,
+  "chrome_edge_on_user_pc_tested": false
+}

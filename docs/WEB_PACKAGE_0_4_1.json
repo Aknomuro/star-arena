@@ -122,8 +122,8 @@
     },
     {
       "path": "star_arena/presentation/music.py",
-      "bytes": 5413,
-      "sha256": "d3e0faeb9f5f4ab6c5cb67ba75074a6eebefdb342899f1938a2be273bb66e459"
+      "bytes": 6465,
+      "sha256": "15f7b99b1428453cc627e80d17cf207f7cd2711e0f1c7ccf63ab211f8e238c90"
     },
     {
       "path": "star_arena/presentation/quality.py",
@@ -202,13 +202,13 @@
     },
     {
       "path": "star_arena/web.py",
-      "bytes": 4857,
-      "sha256": "92dedc0422292c9bacdaab91d1a76af6d8b4db37a8455712d9f43555a2494684"
+      "bytes": 4999,
+      "sha256": "8dc5388af3b91c7e29386316a64c5f596615cebefbb62fc4f61c6ff3bde683a0"
     },
     {
       "path": "web/browser.js",
-      "bytes": 6559,
-      "sha256": "251a19673bfe986328c72702cc9f653696278580ac5d0d9c201541509f436fac"
+      "bytes": 6549,
+      "sha256": "e19187836e1a28c7e2fc8c2a1aa6af617f5f51a9fdd7d642d1a102f80f75d484"
     },
     {
       "path": "web/boot.js",
@@ -297,7 +297,7 @@
     }
   ],
   "count": 59,
-  "bytes": 1294029,
+  "bytes": 1295213,
   "sprites": 9,
   "music_tracks": 6,
   "effects": "7 effets synthétisés par presentation/audio.py",

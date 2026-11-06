@@ -1,8 +1,9 @@
 # Web Edition V0.4.1 — build et publication manuels
 
 Le dossier `web_build/arena/` est une copie source/assets préparée, pas une application HTML5
-compilée. Pygbag n'a pas été exécuté et aucun navigateur n'a été lancé. Le solo adapté reste à
-valider dans Chrome ou Edge. Le jeu PC continue de se lancer avec `main.py`.
+compilée localement. Aucun Pygbag ni navigateur n'a été lancé sur le PC. Le build et le premier
+menu ont depuis été vérifiés sur le runner GitHub ; les parties complètes dans Chrome ou Edge
+restent à tester manuellement. Le jeu PC continue de se lancer avec `main.py`.
 
 ## Option recommandée : build sur GitHub Actions
 
@@ -40,7 +41,8 @@ py -3.12 -m venv .venv-web
 # arena est déjà préparé. Pour une copie source neuve :
 .\.venv-web\Scripts\python.exe -B tools/prepare_web.py --stage web_build/arena-next --report
 .\.venv-web\Scripts\python.exe -m pygbag --build --no_opt --PYBUILD 3.12 --width 1280 --height 800 --ume_block 1 --can_close 1 --package star.arena.web --title "STAR ARENA" web_build/arena-next
-.\.venv-web\Scripts\python.exe -B tools/check_web_build.py web_build/arena-next/build/web
+.\.venv-web\Scripts\python.exe -B tools/prepare_web_output.py web_build/arena-next/build/web
+.\.venv-web\Scripts\python.exe -B tools/check_web_build.py web_build/arena-next/build/web --startup
 ```
 
 Choisir un **nouveau dossier vide** à chaque préparation après des modifications. L'outil refuse
@@ -83,8 +85,11 @@ Neuf PNG et six WAV originaux inclus dans le staging. Les sept effets sont gén�
 inclus : il n'existe pas sept fichiers d'effets externes à inventer. Les six `.ogg` envisagés
 historiquement sont absents ; les WAV existants sont utilisés.
 
-220 tests Python sans Pygame réussis et syntaxe JS vérifiée. Le pont DOM/WASM, le build CI,
-les codecs, le redimensionnement et les performances navigateur restent **NON TESTÉS**.
+237 tests Python sans Pygame réussis et syntaxe JS vérifiée. Le build Pygbag et le premier menu
+ont été vérifiés dans Chromium sur GitHub Actions, avec capture inspectée. Le workflow bloque
+désormais le déploiement si son test du menu échoue. Aucun navigateur n'est lancé sur le PC.
+Les codecs audio à l'écoute, le jeu complet, les performances et les sessions dans Chrome/Edge
+sur le PC restent à valider manuellement. Voir le [rapport du correctif](../docs/WEB_STARTUP_FIX_0_4_1.md).
 Multijoueur Web : **ABSENT**, bouton explicite ; PC/LAN conservé.
 
 Sources officielles pour les commandes et le comportement :
