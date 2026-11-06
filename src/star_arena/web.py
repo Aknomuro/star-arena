@@ -3,7 +3,7 @@ from dataclasses import asdict
 import json
 from pathlib import Path
 
-from star_arena.config import MAX_SAVE_BYTES
+from star_arena.config import MAX_SAVE_BYTES, project_root
 from star_arena.persistence import campaign_payload, decode, _unique_keys, _invalid_constant
 from star_arena.presentation.audio_settings import AudioSettings, decode_settings
 
@@ -73,7 +73,7 @@ class BrowserStore:
 
 class BrowserBridge:
     def __init__(self, window):
-        script = Path(__file__).resolve().parents[2] / 'web' / 'browser.js'
+        script = project_root() / 'web' / 'browser.js'
         window.eval(script.read_text(encoding='utf-8'))
         self.api = window.starArenaWeb
 

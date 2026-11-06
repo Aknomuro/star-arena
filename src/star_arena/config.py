@@ -24,11 +24,17 @@ MAX_PROJECTILES = 256
 MAX_EFFECTS = 100
 
 
+def project_root() -> Path:
+    """Racine des ressources, avec ou sans le préfixe src du développement PC."""
+    parent = Path(__file__).resolve().parent.parent
+    return parent.parent if parent.name == 'src' else parent
+
+
 def default_save_path() -> Path:
     """Préserver les saves locales ; ne jamais écrire dans site-packages."""
     if sys.platform == 'emscripten':
         return Path('saves/campaign.json')  # Identifiant uniquement : stockage via BrowserStore.
-    root = Path(__file__).resolve().parents[2]
+    root = project_root()
     if (root / "src" / "star_arena" / "app.py").is_file():
         return root / "saves" / "campaign.json"
     base = Path(os.environ["LOCALAPPDATA"]) if os.environ.get("LOCALAPPDATA") else Path.home()

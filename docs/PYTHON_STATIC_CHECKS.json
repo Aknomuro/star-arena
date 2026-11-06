@@ -1,9 +1,9 @@
 {
-  "timestamp_utc": "2026-11-05T20:47:31.433108+00:00",
+  "timestamp_utc": "2026-11-06T19:04:33.597994+00:00",
   "scope": "Analyse statique : syntaxe Python 3.11, modules et symboles importés, séparation domaine/rendu, dépendances et configuration VS Code",
-  "python_files": 65,
-  "local_imports": 215,
-  "local_symbols": 426,
+  "python_files": 68,
+  "local_imports": 217,
+  "local_symbols": 429,
   "errors": [],
   "files": [
     "main.py",
@@ -13,7 +13,9 @@
     "tools/check_web_build.py",
     "tools/generate_music.py",
     "tools/prepare_web.py",
+    "tools/prepare_web_output.py",
     "tools/run_logic_tests.py",
+    "tools/web_browser_smoke.py",
     "src/star_arena/__init__.py",
     "src/star_arena/__main__.py",
     "src/star_arena/app.py",
@@ -70,7 +72,8 @@
     "tests/test_pointer_camera.py",
     "tests/test_polish_web.py",
     "tests/test_warfare.py",
-    "tests/test_web_edition.py"
+    "tests/test_web_edition.py",
+    "tests/test_web_startup.py"
   ],
   "pygame_imported": false,
   "game_imported": false,

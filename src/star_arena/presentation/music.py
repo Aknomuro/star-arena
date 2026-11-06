@@ -2,6 +2,7 @@
 from math import isfinite
 from pathlib import Path
 import wave
+from star_arena.config import project_root
 
 TRACKS={'menu':'main_menu.ogg','galaxy':'galaxy.ogg','system':'planetary.ogg',
         'battle':'battle.ogg','victory':'victory.ogg','defeat':'defeat.ogg'}
@@ -38,7 +39,7 @@ def inventory(root: Path) -> dict[str,dict]:
 class MusicManager:
     def __init__(self, backend=None, root: Path | None=None):
         self.backend=backend
-        self.root=root if root is not None else Path(__file__).resolve().parents[3]/'assets'/'audio'/'music'
+        self.root=root if root is not None else project_root()/'assets'/'audio'/'music'
         self.available=inventory(self.root)
         self.desired=None
         self.current=None

@@ -211,7 +211,7 @@ class WebPackageTests(unittest.TestCase):
             index=dest/'index.html'; index.write_text('<script src="https://cdn.example/pythons.js"></script>')
             with zipfile.ZipFile(dest/'arena.apk','w') as archive:
                 for source in self.package.files_for_web(ROOT):
-                    archive.writestr('assets/'+source.relative_to(ROOT).as_posix(),self.package.web_bytes(ROOT,source))
+                    archive.writestr('assets/'+self.package.web_path(ROOT,source).as_posix(),self.package.web_bytes(ROOT,source))
             self.assertEqual(self.build.check(dest),len(self.package.files_for_web(ROOT)))
             self.assertTrue((dest/'.nojekyll').is_file())
             index.write_text('<script src="/root.js"></script>')

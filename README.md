@@ -5,6 +5,12 @@
 Dépôt public : [Aknomuro/star-arena](https://github.com/Aknomuro/star-arena).
 Pour GitHub Pages : Settings → Pages → Source **GitHub Actions**, puis Actions →
 **STAR ARENA Web Edition → Run workflow**. Utiliser l'URL retournée par le déploiement réussi.
+
+Correctif de démarrage Web : paquet `star_arena` directement importable dans l'archive,
+diagnostics avant Python/WASM et première image du menu forcée. Le workflow contrôle maintenant
+le menu avec Chromium sur le runner GitHub, puis conserve sa console et une capture dans
+`web-startup-diagnostics`. Aucun navigateur n'est lancé sur le PC par ces outils.
+[Rapport du correctif écran noir](docs/WEB_STARTUP_FIX_0_4_1.md).
 60 systèmes, économie, chantiers navals, gestion planétaire et défense orbitale.
 Python 3.11+ et Pygame CE. Les batailles RTS et les neuf vrais PNG de la V0.2.1 sont conservés.
 

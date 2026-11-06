@@ -28,7 +28,21 @@ jobs:
       - name: Build Pygbag sans serveur ni navigateur
         run: python -m pygbag --build --no_opt --PYBUILD 3.12 --width 1280 --height 800 --ume_block 1 --can_close 1 --package star.arena.web --title "STAR ARENA" web_build/arena
       - name: Vérifier les fichiers générés
-        run: python -B tools/check_web_build.py web_build/arena/build/web
+        run: |
+          python -B tools/prepare_web_output.py web_build/arena/build/web
+          python -B tools/check_web_build.py web_build/arena/build/web --startup
+      - name: Installer Chromium uniquement sur le runner
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Vérifier le premier menu dans Chromium (runner distant)
+        run: python -B tools/web_browser_smoke.py web_build/arena/build/web
+      - name: Conserver diagnostics et capture du menu
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-startup-diagnostics
+          path: browser-smoke/
       - uses: actions/upload-pages-artifact@v4
         with:
           path: web_build/arena/build/web

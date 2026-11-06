@@ -2,6 +2,7 @@
 from collections import Counter
 from math import cos, degrees, pi, sin
 from pathlib import Path
+from star_arena.config import project_root
 
 import pygame
 
@@ -14,7 +15,7 @@ from star_arena.systems.formations import FORMATION_NAMES
 class BattleRenderer:
     def __init__(self, renderer) -> None:
         self.ui = renderer
-        directory = Path(__file__).resolve().parents[3] / "assets" / "ships"
+        directory = project_root() / "assets" / "ships"
         self.ship_sprites = ShipSprites(pygame, directory)
         self.ship_sprites.preload()
 

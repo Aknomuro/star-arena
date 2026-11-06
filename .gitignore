@@ -34,6 +34,7 @@ Desktop.ini
 /outputs/
 /work/
 /tests/arena-net-*/
+/tests/star-arena-logic-*/
 /Untitled-*.py
 
 # Données d'authentification et configuration locale : jamais de secrets dans Git.

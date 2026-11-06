@@ -793,7 +793,7 @@ class Application:
         camera.follow_pointer(position, dt)
 
 
-async def run_game() -> int:
+async def run_game(on_boot=None) -> int:
     # Surface SDL classique ; audio facultatif initialisé uniquement au lancement manuel.
     os.environ.setdefault("SDL_RENDER_DRIVER", "software")
     try:
@@ -804,6 +804,8 @@ async def run_game() -> int:
     if not getattr(pygame, "IS_CE", False):
         print("Ce projet nécessite pygame-ce, pas la distribution pygame classique.", file=sys.stderr)
         return 1
+    if on_boot:
+        on_boot('pygame', 'Pygame ' + pygame.version.ver + ' / ' + sys.platform)
     from star_arena.presentation.renderer import Renderer
 
     try:
@@ -812,6 +814,11 @@ async def run_game() -> int:
         pygame.key.start_text_input()
         screen = pygame.display.set_mode(WINDOW_SIZE)
         pygame.display.set_caption(f"STAR ARENA: GALACTIC CONQUEST — Python {__version__}")
+        screen.fill((9, 15, 26))
+        pygame.display.flip()
+        if on_boot:
+            on_boot('display', 'Affichage 1280×800 créé ; initialisation de l’interface')
+        await asyncio.sleep(0)
         save_path = default_save_path()
         app = Application(pygame, Renderer(screen), save_path)
         app.audio = SoundEffects(pygame)
@@ -833,6 +840,12 @@ async def run_game() -> int:
             app.message = 'Pont navigateur indisponible : ' + str(error)
         if not app.needs_audio_unlock:
             app.configure_audio(persist=False)
+        # Afficher une première fois même si le canvas n'a pas encore le focus clavier.
+        app.renderer.draw(app)
+        pygame.display.flip()
+        if on_boot:
+            on_boot('menu', 'Menu principal STAR ARENA affiché')
+        await asyncio.sleep(0)
         clock = pygame.time.Clock()
         render_elapsed = 1 / FPS_LIMIT
         while app.running:
@@ -863,6 +876,8 @@ async def run_game() -> int:
                 render_elapsed %= 1 / FPS_LIMIT
             await asyncio.sleep(0)
     except pygame.error as error:
+        if sys.platform == 'emscripten':
+            raise
         print(f"Initialisation ou affichage Pygame impossible : {error}", file=sys.stderr)
         return 1
     finally:

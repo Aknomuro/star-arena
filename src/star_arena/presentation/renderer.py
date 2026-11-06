@@ -43,7 +43,9 @@ class Renderer:
         self._galaxy_geometry = GalaxyGeometry()
         self._route_key = None
         self._route_surface = None
-        self.fonts = {size: pygame.font.SysFont("segoeui,dejavusans,arial", size) for size in (14, 16, 18, 24, 38)}
+        self.fonts = {size: (pygame.font.Font(None, size) if sys.platform == 'emscripten'
+                            else pygame.font.SysFont("segoeui,dejavusans,arial", size))
+                      for size in (14, 16, 18, 24, 38)}
         self.buttons: list[Button] = []
         self.fleet_points: dict[int, tuple[int, int]] = {}
         self._text_cache: OrderedDict[tuple, pygame.Surface] = OrderedDict()
