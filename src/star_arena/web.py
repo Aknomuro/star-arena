@@ -74,7 +74,8 @@ class BrowserStore:
 class BrowserBridge:
     def __init__(self, window):
         script = project_root() / 'web' / 'browser.js'
-        window.eval(script.read_text(encoding='utf-8'))
+        # Le pont WASM ancien transporte mieux les expressions ASCII que les littéraux UTF-8.
+        window.eval('eval(' + json.dumps(script.read_text(encoding='utf-8'), ensure_ascii=True) + ')')
         self.api = window.starArenaWeb
 
     def call(self, operation, *args):

@@ -48,6 +48,12 @@ def main():
                 result['canvas']=page.locator('#canvas').evaluate('(c)=>({width:c.width,height:c.height,visible:c.getBoundingClientRect().width>0})')
                 result['menu_visible']=bool(result['boot'] and result['boot']['state']=='ready' and result['canvas']['visible'])
                 page.screenshot(path=str(output/'menu.png'))
+                if result['menu_visible']:
+                    page.get_by_role('button',name='Qualité',exact=True).click()
+                    page.wait_for_function("document.querySelector('#star-arena-controls [role=status]').textContent.includes('Qualité')",timeout=10000)
+                    result['menu_responds_to_quality']=True
+                    result['ui_message']=page.locator('#star-arena-controls [role=status]').inner_text()
+                    result['menu_visible']=page.evaluate("starArenaBoot.state === 'ready'")
             except Exception as error:
                 result['error']=str(error)
             finally:
@@ -57,7 +63,7 @@ def main():
         (output/'console.json').write_text(json.dumps(logs,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         (output/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         print(json.dumps(result,ensure_ascii=False,indent=2))
-    return 0 if result['menu_visible'] or args.diagnostic_only else 1
+    return 0 if (result['menu_visible'] and result.get('menu_responds_to_quality') and not result.get('error')) or args.diagnostic_only else 1
 
 
 if __name__=='__main__': raise SystemExit(main())

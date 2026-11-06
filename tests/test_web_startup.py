@@ -21,6 +21,14 @@ def load_tool(name):
 
 
 class WebStartupTests(unittest.TestCase):
+    def test_js_bridge_source_is_transferred_as_ascii_with_unicode_preserved(self):
+        from star_arena.web import BrowserBridge
+        expressions=[]
+        window=SimpleNamespace(eval=expressions.append,starArenaWeb=object())
+        BrowserBridge(window)
+        self.assertTrue(expressions[0].isascii())
+        self.assertIn('Qualité',json.loads(expressions[0][5:-1]))
+
     def test_music_imports_and_validates_real_assets_without_wave(self):
         import builtins
         original=builtins.__import__
