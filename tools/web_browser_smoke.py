@@ -54,6 +54,14 @@ def main():
                     result['menu_responds_to_quality']=True
                     result['ui_message']=page.locator('#star-arena-controls [role=status]').inner_text()
                     result['menu_visible']=page.evaluate("starArenaBoot.state === 'ready'")
+                    canvas=page.locator('#canvas')
+                    box=canvas.bounding_box()
+                    # Bouton Nouvelle campagne, coordonnées logiques adaptées au CSS du canvas.
+                    canvas.click(position={'x':460*box['width']/1280,'y':475*box['height']/800})
+                    page.wait_for_function("window.starArenaWeb?.lastFrame === 'galaxy'",timeout=15000)
+                    page.wait_for_timeout(500)
+                    result['galaxy_visible']=page.evaluate("starArenaWeb.lastFrame === 'galaxy' && starArenaBoot.state === 'ready'")
+                    page.screenshot(path=str(output/'galaxy.png'))
             except Exception as error:
                 result['error']=str(error)
             finally:
@@ -63,7 +71,7 @@ def main():
         (output/'console.json').write_text(json.dumps(logs,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         (output/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         print(json.dumps(result,ensure_ascii=False,indent=2))
-    return 0 if (result['menu_visible'] and result.get('menu_responds_to_quality') and not result.get('error')) or args.diagnostic_only else 1
+    return 0 if (result['menu_visible'] and result.get('menu_responds_to_quality') and result.get('galaxy_visible') and not result.get('error')) or args.diagnostic_only else 1
 
 
 if __name__=='__main__': raise SystemExit(main())

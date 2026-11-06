@@ -5,10 +5,11 @@ from random import Random
 import sys
 
 import pygame
-try:
-    import pygame.gfxdraw
-except ImportError:
-    pass  # Certains runtimes Web n’incluent pas cette extension optionnelle.
+if sys.platform != 'emscripten':
+    try:
+        import pygame.gfxdraw
+    except ImportError:
+        pass  # Extension facultative ; son bon fonctionnement est vérifié à l'utilisation.
 from star_arena.presentation.art import Painter
 from star_arena.presentation.camera import GalaxyGeometry
 
@@ -61,7 +62,7 @@ class Renderer:
             for radius in range(70,0,-3):
                 weight=(70-radius)/70
                 mixed=tuple(round(BG[i]+(color[i]-BG[i])*weight) for i in range(3))
-                pygame.draw.ellipse(haze,mixed,(cx-radius,cy-radius//2,radius*2,radius))
+                self.painter.ellipse(haze,mixed,(cx-radius,cy-radius//2,radius*2,radius))
         self.background.blit(pygame.transform.smoothscale(haze,surface.get_size()),(0,0))
         for _ in range(270):
             color = rng.choice(((36, 54, 73), (55, 76, 94), (92, 112, 129)))
@@ -290,7 +291,7 @@ class Renderer:
             layer=pygame.Surface((vw,vh),pygame.SRCALPHA)
             for a,b in self._galaxy_geometry.edges:
                 p,q=system_points[a],system_points[b]
-                pygame.draw.aaline(layer,(34,60,82),(p[0]-vx,p[1]-vy),(q[0]-vx,q[1]-vy))
+                self.painter.line(layer,(34,60,82),(p[0]-vx,p[1]-vy),(q[0]-vx,q[1]-vy),antialias=True)
             self._route_surface=layer
             self._route_key=self._galaxy_geometry.key
         self.surface.blit(self._route_surface,app.camera.viewport[:2])
@@ -298,7 +299,7 @@ class Renderer:
             highlighted = selected is not None and selected.travel is None and selected.system_id in (a, b)
             if (a,b) in route_edges or highlighted:
                 color = (250,210,100) if (a,b) in route_edges else (69,134,158)
-                pygame.draw.aaline(self.surface, color, system_points[a], system_points[b])
+                self.painter.line(self.surface, color, system_points[a], system_points[b],antialias=True)
         visible = pygame.Rect(app.camera.viewport).inflate(120, 120)
         hovered=app.pick_system(self._mouse_position)
         for system in c.systems.values():
@@ -339,7 +340,7 @@ class Renderer:
                 continue
             self.fleet_points[fleet.id] = (x, y)
             points = [(x + cos(angle + a) * r, y + sin(angle + a) * r) for a, r in ((0, 10), (2.5, 8), (-2.5, 8))]
-            pygame.draw.polygon(self.surface, FACTIONS[fleet.owner].color, points)
+            self.painter.polygon(self.surface, FACTIONS[fleet.owner].color, points)
             if fleet.id == app.selected_fleet:
                 self.circle(self.surface, (245, 231, 160), (x, y), 15, 1)
             self.text(str(len(fleet.ships)), x + 12, y - 9, 14, FACTIONS[fleet.owner].color)
@@ -449,7 +450,7 @@ class Renderer:
             base=pygame.Surface((210,130),pygame.SRCALPHA)
             for a,b in c.routes:
                 p,q=point(c.systems[a].position),point(c.systems[b].position)
-                pygame.draw.aaline(base,BORDER,(p[0]-28,p[1]-548),(q[0]-28,q[1]-548))
+                self.painter.line(base,BORDER,(p[0]-28,p[1]-548),(q[0]-28,q[1]-548),antialias=True)
             for system in c.systems.values():
                 color=MUTED if system.owner is None else FACTIONS[system.owner].color
                 p=point(system.position)

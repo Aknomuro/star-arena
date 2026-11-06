@@ -17,8 +17,8 @@
     },
     {
       "path": "star_arena/app.py",
-      "bytes": 48735,
-      "sha256": "f579dbd9f2114c5b6279c62ace7073090c1baf53f0868e37d7cfbe303c996cbc"
+      "bytes": 48836,
+      "sha256": "2265122376c7e514c374d8e2900e21ee9593f2794049658e4e60bb1c2d9d793f"
     },
     {
       "path": "star_arena/config.py",
@@ -82,8 +82,8 @@
     },
     {
       "path": "star_arena/presentation/art.py",
-      "bytes": 3492,
-      "sha256": "d953c62d46796765dfdccf0a13af32a6088f3558d0b48b1218e36c734733b5c1"
+      "bytes": 6635,
+      "sha256": "815724d8f17dcab37cdf3bf06274b88aaef829151cd183f5d199c3a22af4a3ef"
     },
     {
       "path": "star_arena/presentation/audio.py",
@@ -102,8 +102,8 @@
     },
     {
       "path": "star_arena/presentation/battle_renderer.py",
-      "bytes": 8963,
-      "sha256": "6b542b996465b38f75e31cdd303ce86e72079cc59ccaa1e27d6df54aaaea7ab3"
+      "bytes": 8956,
+      "sha256": "48aa3cf78809d1482a142fbde61e662ea3d809d6589e6b28f886a4d164585e1f"
     },
     {
       "path": "star_arena/presentation/camera.py",
@@ -132,8 +132,8 @@
     },
     {
       "path": "star_arena/presentation/renderer.py",
-      "bytes": 30697,
-      "sha256": "e5b196b30376485f214436844ec5f2059d71e232fd27db6e796cecea07eee213"
+      "bytes": 30802,
+      "sha256": "3d652b4919238469d8cc5d99d980787e1e3b34807a92519203dbba5c5cf3dec0"
     },
     {
       "path": "star_arena/presentation/ship_sprites.py",
@@ -207,8 +207,8 @@
     },
     {
       "path": "web/browser.js",
-      "bytes": 6549,
-      "sha256": "e19187836e1a28c7e2fc8c2a1aa6af617f5f51a9fdd7d642d1a102f80f75d484"
+      "bytes": 6638,
+      "sha256": "43d298dc62acc6d9e1e7e83c4be479a4b51fc78172c1db8b3f156f0874889d70"
     },
     {
       "path": "web/boot.js",
@@ -297,7 +297,7 @@
     }
   ],
   "count": 59,
-  "bytes": 1295213,
+  "bytes": 1298644,
   "sprites": 9,
   "music_tracks": 6,
   "effects": "7 effets synthétisés par presentation/audio.py",
@@ -311,6 +311,5 @@
     "tests",
     "__pycache__",
     "serveur et client LAN"
-  ],
-  "staged_files": 59
+  ]
 }

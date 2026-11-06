@@ -106,6 +106,7 @@
                         throw Error('Sauvegarde modifiée dans un autre onglet. Exportez la campagne courante avant de recharger.');
                     window.localStorage.setItem(key, args[1]);
                 } else if (operation === 'poll') value = events.shift() || null;
+                else if (operation === 'frame') window.starArenaWeb.lastFrame = args[0];
                 else if (operation === 'status') status.textContent = args[0];
                 else if (operation === 'download') {
                     const url = URL.createObjectURL(new Blob([args[0]], {type:'application/json;charset=utf-8'}));

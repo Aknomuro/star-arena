@@ -40,13 +40,13 @@ class BattleRenderer:
                 r = max(3, round(radius * camera.scale))
                 points = [(point[0] + cos(i * pi / 4) * r * (0.82 if i % 2 else 1),
                            point[1] + sin(i * pi / 4) * r * (0.82 if i % 2 else 1)) for i in range(8)]
-                pygame.draw.polygon(surface, (42, 48, 58), points)
-                pygame.draw.polygon(surface, (88, 96, 109), points, 1)
+                ui.painter.polygon(surface, (42, 48, 58), points)
+                ui.painter.polygon(surface, (88, 96, 109), points, 1)
         for shot in battle.projectiles:
             point = camera.screen((shot.x, shot.y))
             if visible.collidepoint(point):
                 tail = camera.screen((shot.x - shot.vx * 0.025, shot.y - shot.vy * 0.025))
-                pygame.draw.line(surface, FACTIONS[shot.owner].color, tail, point, 2)
+                ui.painter.line(surface, FACTIONS[shot.owner].color, tail, point, 2)
         for unit in battle.living():
             point = camera.screen((unit.x, unit.y))
             if not visible.collidepoint(point):
@@ -74,12 +74,12 @@ class BattleRenderer:
                     shape = ((1.4, 0), (0, -0.8), (-1, -0.6), (-1, 0.6), (0, 0.8))
                 points = [(point[0] + (x * cos(unit.angle) - y * sin(unit.angle)) * radius,
                            point[1] + (x * sin(unit.angle) + y * cos(unit.angle)) * radius) for x, y in shape]
-                pygame.draw.polygon(surface, palette.body, points)
-                pygame.draw.polygon(surface, color, points, 2)
+                ui.painter.polygon(surface, palette.body, points)
+                ui.painter.polygon(surface, color, points, 2)
                 # Un marquage de faction net sur une coque claire ou sombre.
                 stern = (point[0] - cos(unit.angle) * radius * 0.5, point[1] - sin(unit.angle) * radius * 0.5)
                 bow = (point[0] + cos(unit.angle) * radius * 0.65, point[1] + sin(unit.angle) * radius * 0.65)
-                pygame.draw.line(surface, color, stern, bow, 2)
+                ui.painter.line(surface, color, stern, bow, 2)
             hull_max, shield_max = SHIP_TYPES[unit.ship.model][1:]
             width = max(22, radius * 2)
             x, y = point[0] - width // 2, point[1] - radius - 12
@@ -94,7 +94,7 @@ class BattleRenderer:
             fraction = effect.life / effect.duration
             radius = max(2, round(effect.radius * camera.scale * (1.4 - fraction * 0.4)))
             if effect.kind == "debris":
-                pygame.draw.line(surface, (145, 130, 102), point, (point[0] + radius, point[1] - radius), 2)
+                ui.painter.line(surface, (145, 130, 102), point, (point[0] + radius, point[1] - radius), 2)
             else:
                 color = (80, 170, 235) if effect.kind == "shield" else (255, 161, 77)
                 color = tuple(round(c * fraction) for c in color)

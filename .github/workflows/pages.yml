@@ -35,7 +35,7 @@ jobs:
         run: |
           python -m pip install playwright==1.58.0
           python -m playwright install chromium
-      - name: Vérifier le premier menu dans Chromium (runner distant)
+      - name: Vérifier le menu puis la galaxie dans Chromium (runner distant)
         run: python -B tools/web_browser_smoke.py web_build/arena/build/web
       - name: Conserver diagnostics et capture du menu
         if: always()

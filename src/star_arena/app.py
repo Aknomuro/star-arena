@@ -873,6 +873,8 @@ async def run_game(on_boot=None) -> int:
                 app.feedback()
                 app.renderer.draw(app)
                 pygame.display.flip()
+                if app.browser is not None:
+                    app.browser.call('frame',app.mode)
                 render_elapsed %= 1 / FPS_LIMIT
             await asyncio.sleep(0)
     except pygame.error as error:

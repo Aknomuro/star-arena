@@ -12,6 +12,11 @@ le menu avec Chromium sur le runner GitHub, puis conserve sa console et une capt
 `web-startup-diagnostics`. Aucun navigateur n'est lancé sur le PC par ces outils.
 [Rapport du correctif écran noir](docs/WEB_STARTUP_FIX_0_4_1.md).
 
+Correctif supplémentaire du crash `Parameter 'renderer' is invalid` : cercles Web sans SDL_gfx,
+supersampling local borné et replis logiciels ciblés. Après publication du commit, relancer
+le workflow Pages pour déployer ce correctif ; il vérifie désormais le menu **puis une nouvelle
+campagne sur la carte galactique**. [Rapport gfxdraw](docs/WEB_GFXDRAW_FIX_0_4_1.md).
+
 Le [menu Web](https://aknomuro.github.io/star-arena/) est maintenant vérifié dans Chromium
 sur GitHub Actions : affichage et réponse du bouton Qualité, capture inspectée, déploiement réussi.
 Après mise à jour du site, utiliser Ctrl+F5 si une ancienne version reste en cache.

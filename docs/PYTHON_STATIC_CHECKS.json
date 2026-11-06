@@ -1,9 +1,9 @@
 {
-  "timestamp_utc": "2026-11-06T19:18:06.975844+00:00",
+  "timestamp_utc": "2026-11-06T19:35:56.595987+00:00",
   "scope": "Analyse statique : syntaxe Python 3.11, modules et symboles importés, séparation domaine/rendu, dépendances et configuration VS Code",
-  "python_files": 68,
-  "local_imports": 219,
-  "local_symbols": 431,
+  "python_files": 69,
+  "local_imports": 220,
+  "local_symbols": 432,
   "errors": [],
   "files": [
     "main.py",
@@ -65,6 +65,7 @@
     "tests/test_expansion.py",
     "tests/test_extremes.py",
     "tests/test_fleet_visuals.py",
+    "tests/test_graphics_compat.py",
     "tests/test_multiplayer.py",
     "tests/test_music.py",
     "tests/test_navigation_audio_fix.py",
