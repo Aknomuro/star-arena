@@ -60,6 +60,10 @@ class Painter:
 
     def circle(self,surface,color,point,radius,width=0):
         pg=self.pg; xy=(round(point[0]),round(point[1])); r=max(1,round(radius))
+        if sys.platform=='emscripten':
+            # Garde à l'appel aussi : un Painter réutilisé ne doit jamais appeler SDL_gfx sur Web.
+            self._prefer_circle_surface=True
+            self._gfx_circle=None
         if self._prefer_circle_surface and self._circle_surface(surface,color,xy,r,width):
             return
         pg.draw.circle(surface,color,xy,r,width)

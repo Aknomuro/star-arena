@@ -4,6 +4,8 @@ from html.parser import HTMLParser
 from pathlib import Path, PurePosixPath
 import zipfile
 import sys
+import hashlib
+import json
 
 
 class References(HTMLParser):
@@ -34,6 +36,14 @@ def check(folder: Path, *, require_startup=False):
     if len(archives)!=1:
         raise ValueError('Une archive de jeu Pygbag .apk est requise (archive ZIP, pas application Android).')
     root=Path(__file__).resolve().parents[1]
+    if require_startup:
+        info=json.loads((folder/'build-info.json').read_text(encoding='utf-8'))
+        if info.get('package_sha256')!=hashlib.sha256(archives[0].read_bytes()).hexdigest():
+            raise ValueError('Provenance du paquet périmée : régénérer le build depuis les sources.')
+        with zipfile.ZipFile(archives[0]) as package:
+            digest=hashlib.sha256(package.read('assets/star_arena/presentation/art.py')).hexdigest()
+        if info.get('art_sha256')!=digest:
+            raise ValueError('Empreinte de art.py différente du paquet publié.')
     # Comparaison exacte avec la liste autorisée, pas seulement une liste noire.
     from prepare_web import files_for_web, web_bytes, web_path
     sources={web_path(root,p).as_posix():p for p in files_for_web(root)}

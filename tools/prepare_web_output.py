@@ -3,6 +3,8 @@ from pathlib import Path
 import argparse
 import hashlib
 import json
+import subprocess
+import zipfile
 
 
 def prepare(folder: Path):
@@ -24,8 +26,22 @@ def prepare(folder: Path):
         html=html[:position]+marker+'\n'+html[position:]
     index.write_text(html,encoding='utf-8')
     (folder/'star-arena-boot.js').write_bytes((root/'web/boot.js').read_bytes())
+    try:
+        git_result=subprocess.run(['git','rev-parse','HEAD'],cwd=root,capture_output=True,text=True,check=False)
+        revision=git_result.stdout.strip() if git_result.returncode==0 else None
+    except FileNotFoundError:
+        revision=None
+    archives=list(folder.glob('*.apk'))
+    archive=archives[0] if len(archives)==1 else None
+    art_digest=None
+    if archive:
+        with zipfile.ZipFile(archive) as package:
+            art_digest=hashlib.sha256(package.read('assets/star_arena/presentation/art.py')).hexdigest()
     report={'index_sha256':hashlib.sha256(index.read_bytes()).hexdigest(),
             'boot_script_before_runtime':html.index(marker)<html.index('pythons.js'),
+            'source_commit':revision,
+            'package_sha256':hashlib.sha256(archive.read_bytes()).hexdigest() if archive else None,
+            'art_sha256':art_digest,
             'browser_tested':False}
     (folder/'build-info.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     return report

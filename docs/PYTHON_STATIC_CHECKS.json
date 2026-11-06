@@ -1,7 +1,7 @@
 {
-  "timestamp_utc": "2026-11-06T19:35:56.595987+00:00",
+  "timestamp_utc": "2026-11-06T19:44:55.109120+00:00",
   "scope": "Analyse statique : syntaxe Python 3.11, modules et symboles importés, séparation domaine/rendu, dépendances et configuration VS Code",
-  "python_files": 69,
+  "python_files": 70,
   "local_imports": 220,
   "local_symbols": 432,
   "errors": [],
@@ -74,6 +74,7 @@
     "tests/test_polish_web.py",
     "tests/test_warfare.py",
     "tests/test_web_edition.py",
+    "tests/test_web_stage_freshness.py",
     "tests/test_web_startup.py"
   ],
   "pygame_imported": false,

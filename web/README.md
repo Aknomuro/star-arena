@@ -38,15 +38,18 @@ Depuis la racine du projet, dans PowerShell :
 ```powershell
 py -3.12 -m venv .venv-web
 .\.venv-web\Scripts\python.exe -m pip install -r requirements-web.txt
-# arena est déjà préparé. Pour une copie source neuve :
-.\.venv-web\Scripts\python.exe -B tools/prepare_web.py --stage web_build/arena-next --report
-.\.venv-web\Scripts\python.exe -m pygbag --build --no_opt --PYBUILD 3.12 --width 1280 --height 800 --ume_block 1 --can_close 1 --package star.arena.web --title "STAR ARENA" web_build/arena-next
-.\.venv-web\Scripts\python.exe -B tools/prepare_web_output.py web_build/arena-next/build/web
-.\.venv-web\Scripts\python.exe -B tools/check_web_build.py web_build/arena-next/build/web --startup
+# Conserver l'ancienne copie puis recréer arena depuis les sources actuelles :
+.\.venv-web\Scripts\python.exe -B tools/prepare_web.py --stage web_build/arena --refresh --report
+.\.venv-web\Scripts\python.exe -B tools/prepare_web.py --verify-stage web_build/arena
+.\.venv-web\Scripts\python.exe -m pygbag --build --no_opt --PYBUILD 3.12 --width 1280 --height 800 --ume_block 1 --can_close 1 --package star.arena.web --title "STAR ARENA" web_build/arena
+.\.venv-web\Scripts\python.exe -B tools/prepare_web_output.py web_build/arena/build/web
+.\.venv-web\Scripts\python.exe -B tools/check_web_build.py web_build/arena/build/web --startup
 ```
 
-Choisir un **nouveau dossier vide** à chaque préparation après des modifications. L'outil refuse
-les fichiers différents et les fichiers supplémentaires ; il ne nettoie ni n'efface un dossier.
+`--refresh` régénère uniquement `web_build/arena`. Sa copie précédente est déplacée intégralement
+dans `web_build/stage_history/`, sans suppression de fichiers. Sans cette option, l'outil continue
+de refuser les fichiers différents et supplémentaires. `--verify-stage` bloque un staging périmé
+ou contenant d'anciens résultats de build avant compilation. Ne pas compiler une vieille copie.
 `--no_opt` conserve exactement PNG, WAV et scripts et évite les convertisseurs d'assets externes.
 L'archive `.apk` de Pygbag est un ZIP de jeu Web, pas une application Android.
 
@@ -59,7 +62,7 @@ un test de chargement et d'exécution dans le navigateur.
 Après un build réussi et vérifié, **si vous souhaitez lancer un serveur temporaire** :
 
 ```powershell
-.\.venv-web\Scripts\python.exe -m http.server 8000 --bind 127.0.0.1 --directory web_build/arena-next/build/web
+.\.venv-web\Scripts\python.exe -m http.server 8000 --bind 127.0.0.1 --directory web_build/arena/build/web
 ```
 
 Ouvrir soi-même `http://127.0.0.1:8000/` dans Chrome ou Edge. Ne pas ouvrir `index.html` en

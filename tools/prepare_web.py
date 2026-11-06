@@ -3,6 +3,8 @@ import argparse
 import json
 from pathlib import Path
 import hashlib
+from datetime import datetime, timezone
+from uuid import uuid4
 
 
 def files_for_web(root: Path):
@@ -59,6 +61,49 @@ def stage(root: Path, destination: Path):
     return len(files)
 
 
+def verify_stage(root: Path, destination: Path):
+    """Refuser tout fichier périmé, manquant ou supplémentaire avant de compiler."""
+    root=root.resolve(); destination=destination.resolve()
+    expected={web_path(root,p).as_posix():web_bytes(root,p) for p in files_for_web(root)}
+    actual={p.relative_to(destination).as_posix() for p in destination.rglob('*') if p.is_file()}
+    if actual!=set(expected):
+        raise ValueError('Staging incomplet ou non isolé ; régénérer avec --refresh. '
+                         +'Manquants : '+', '.join(sorted(set(expected)-actual)[:4])
+                         +' ; supplémentaires : '+', '.join(sorted(actual-set(expected))[:4]))
+    for name,data in expected.items():
+        if (destination/name).read_bytes()!=data:
+            raise ValueError('Ancienne copie détectée : '+name+' ; régénérer avec --refresh.')
+    return {name:hashlib.sha256(data).hexdigest() for name,data in sorted(expected.items())}
+
+
+def refresh_stage(root: Path, destination: Path):
+    """Archiver arena en entier puis le recréer ; aucun fichier utilisateur supprimé."""
+    root=root.resolve()
+    build=root/'web_build'; expected=build/'arena'
+    destination=destination.absolute()
+    def linked(path):
+        return path.is_symlink() or getattr(path,'is_junction',lambda:False)()
+    if destination!=expected or linked(build) or linked(destination) or not destination.resolve().is_relative_to(build.resolve()) or not build.resolve().is_relative_to(root):
+        raise ValueError('--refresh est réservé au vrai dossier web_build/arena dans ce projet, sans lien externe.')
+    inventory(root)  # Examiner les sources avant de toucher à l'ancienne copie.
+    backup=None
+    if destination.exists():
+        history=build/'stage_history'
+        if linked(history) or not history.resolve().is_relative_to(build.resolve()):
+            raise ValueError('Dossier de conservation non sûr ; ancienne copie conservée en place.')
+        history.mkdir(parents=True,exist_ok=True)
+        stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+        backup=history/('arena-'+stamp+'-'+uuid4().hex[:8])
+        # Source et cible résolues explicitement dans web_build avant ce déplacement de dossier.
+        if not backup.resolve().is_relative_to(build.resolve()):
+            raise ValueError('Chemin de conservation hors du projet.')
+        destination.rename(backup)
+    count=stage(root,destination)
+    hashes=verify_stage(root,destination)
+    return {'staged_files':count,'verified_files':len(hashes),
+            'previous_stage_preserved':backup.relative_to(root).as_posix() if backup else None}
+
+
 def inventory(root: Path):
     files=files_for_web(root)
     missing=[str(p.relative_to(root)) for p in files if not p.is_file()]
@@ -93,11 +138,19 @@ def inventory(root: Path):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--stage',type=Path)
+    parser.add_argument('--refresh',action='store_true',help='Conserver puis régénérer web_build/arena.')
+    parser.add_argument('--verify-stage',type=Path,help='Refuser toute copie différente des sources actuelles.')
     parser.add_argument('--report',action='store_true')
     args=parser.parse_args()
     root=Path(__file__).resolve().parents[1]
     result=inventory(root)
-    if args.stage: result['staged_files']=stage(root,args.stage)
+    if args.refresh and not args.stage:
+        parser.error('--refresh nécessite --stage web_build/arena')
+    if args.stage:
+        if args.refresh: result.update(refresh_stage(root,args.stage))
+        else: result['staged_files']=stage(root,args.stage)
+    if args.verify_stage:
+        result['verified_stage_files']=len(verify_stage(root,args.verify_stage))
     if args.report:
         (root/'docs/WEB_PACKAGE_0_4_1.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(result,ensure_ascii=False,indent=2))

@@ -71,6 +71,14 @@ class GraphicsCompatibilityTests(unittest.TestCase):
         self.assertEqual(len(target.blits),1)
         self.assertEqual(pg.images[0].size,(68,68))
 
+    def test_web_call_guard_protects_previously_created_painter(self):
+        pg=Backend(); pg.gfx_error=GraphicsError("Parameter 'renderer' is invalid")
+        painter=Painter(pg)
+        with patch('sys.platform','emscripten'):
+            painter.circle(Surface(),(18,36,51),(120,140),15)
+        self.assertEqual(pg.gfx_calls,0)
+        self.assertIsNone(painter._gfx_circle)
+
     def test_desktop_failure_draws_base_and_disables_only_failed_capability(self):
         pg=Backend(); pg.gfx_error=GraphicsError("Parameter 'renderer' is invalid")
         painter=Painter(pg); target=Surface()

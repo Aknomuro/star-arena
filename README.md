@@ -17,6 +17,12 @@ supersampling local borné et replis logiciels ciblés. Après publication du co
 le workflow Pages pour déployer ce correctif ; il vérifie désormais le menu **puis une nouvelle
 campagne sur la carte galactique**. [Rapport gfxdraw](docs/WEB_GFXDRAW_FIX_0_4_1.md).
 
+Attention aux anciennes copies : le workflow régénère maintenant `web_build/arena` avec
+`--refresh`, puis compare chacun de ses fichiers aux sources juste avant Pygbag.
+Pour déployer une correction, utiliser **Run workflow → main**, et non relancer un ancien run
+attaché à un ancien commit. Le fichier public `build-info.json` indiquera le commit compilé
+et les empreintes du paquet et de `art.py`.
+
 Le [menu Web](https://aknomuro.github.io/star-arena/) est maintenant vérifié dans Chromium
 sur GitHub Actions : affichage et réponse du bouton Qualité, capture inspectée, déploiement réussi.
 Après mise à jour du site, utiliser Ctrl+F5 si une ancienne version reste en cache.
